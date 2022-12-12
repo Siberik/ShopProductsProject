@@ -1,5 +1,4 @@
-﻿using ShopProductsProject.View.Pages;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,17 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ShopProductsProject
+namespace ShopProductsProject.View.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для ProductPages.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ProductPages : Page
     {
-        public MainWindow()
+        public ProductPages()
         {
             InitializeComponent();
-            MainFrame.Navigate(new ProductPages());
         }
     }
 }

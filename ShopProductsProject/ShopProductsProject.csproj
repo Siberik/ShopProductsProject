@@ -64,6 +64,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="View\Pages\ProductPages.xaml.cs">
+      <DependentUpon>ProductPages.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Assets\Dictionaries\Dictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -76,6 +83,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\Pages\ProductPages.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Agent.cs">
@@ -154,6 +165,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <Resource Include="Assets\Fonts\courier_new.ttf" />
     <None Include="Model\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </None>
@@ -167,13 +179,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Assets\Dictionaries\" />
-    <Folder Include="Assets\Fonts\" />
-    <Folder Include="Assets\Images\" />
-    <Folder Include="View\Pages\" />
+    <Folder Include="Model\Patrial Class\" />
     <Folder Include="View\Window\" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Assets\Images\icon.ico" />
+    <Resource Include="Assets\Images\logo.png" />
     <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model1.Context.cs</LastGenOutput>
