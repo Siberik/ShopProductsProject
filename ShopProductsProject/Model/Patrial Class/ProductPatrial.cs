@@ -8,6 +8,17 @@ namespace ShopProductsProject.Model
 {
     public partial class Product
     {
-        public string ImagePath { get { return "/Assets/Images" + Image; } }
+        public string ImagePath { get { 
+                if(Image==null)
+                {
+                    return "/Assets/Images/picture.png";
+                }
+                else
+                {
+        return "/Assets/Images" + Image;
+                }
+
+                 } }
+
     }
 }

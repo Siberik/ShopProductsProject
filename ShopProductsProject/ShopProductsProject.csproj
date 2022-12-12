@@ -183,6 +183,8 @@
     <Folder Include="View\Window\" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Assets\Images\picture.png" />
+    <Resource Include="Assets\Images\Icon.png" />
     <Resource Include="Assets\Images\products\tire_0.jpg" />
     <Resource Include="Assets\Images\products\tire_1.jpg" />
     <Resource Include="Assets\Images\products\tire_10.jpg" />
