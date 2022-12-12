@@ -8,6 +8,7 @@ namespace ShopProductsProject.Model
 {
     public partial class Product
     {
+        Core db = new Core();
         /// <summary>
         /// Свойство, отвечающее за исправление пути к картинке
         /// </summary>
@@ -35,16 +36,32 @@ namespace ShopProductsProject.Model
             {
                 string materials = "Материалы:  ";
                 List<string> arrayMaterials = new List<string> { };
-                List<ProductMaterial> arrayActiveProduct = ProductMaterial.Where(x => x.ProductID == ID).ToList();
-                foreach(var item in arrayActiveProduct)
+
+                List<ProductMaterial> arrayActiveProduct = db.context.ProductMaterial.Where(x => x.ProductID == ID).ToList();
+                foreach (var item in arrayActiveProduct)
                 {
                     arrayMaterials.Add(item.Material.Title.ToString());
-                   
+
                 }
-                materials+=String.Join(",", arrayMaterials); 
-                return materials;
+                materials += String.Join(",", arrayMaterials);
+                if (arrayMaterials.Count == 0)
+                {
+                    return string.Empty;
+                }
+                else
+                {
+                    return materials;
+                }
+
+
             }
         }
+        public decimal ReadyCount
+        {
+            get
+            {
 
+            }
+        }
     }
 }
