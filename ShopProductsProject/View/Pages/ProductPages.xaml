@@ -57,7 +57,7 @@
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="{Binding Title}"/>
                                 <TextBlock Text="{Binding ArticleNumber}"/>
-                                <TextBlock Text="{Binding MinCostForAgent}"/>
+                                        <TextBlock Text="{Binding MaterialList}"/>
                             </StackPanel>
                         </Grid>
                     </Grid>

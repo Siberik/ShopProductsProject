@@ -29,9 +29,22 @@ namespace ShopProductsProject.Model
         /// <summary>
         /// Метод, возвращающий список материалов
         /// </summary>
-        public string MaterialList { get {
-                string materials = "";
+        public string MaterialList
+        {
+            get
+            {
+                string materials = "Материалы:  ";
+                List<string> arrayMaterials = new List<string> { };
+                List<ProductMaterial> arrayActiveProduct = ProductMaterial.Where(x => x.ProductID == ID).ToList();
+                foreach(var item in arrayActiveProduct)
+                {
+                    arrayMaterials.Add(item.Material.Title.ToString());
+                   
+                }
+                materials+=String.Join(",", arrayMaterials); 
                 return materials;
-                    } }
+            }
+        }
+
     }
 }
