@@ -87,6 +87,7 @@
     <Compile Include="Model\AgentType.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Core.cs" />
     <Compile Include="Model\Material.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
