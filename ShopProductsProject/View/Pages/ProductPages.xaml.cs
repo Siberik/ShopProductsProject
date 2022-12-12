@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShopProductsProject.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,12 @@ namespace ShopProductsProject.View.Pages
     /// </summary>
     public partial class ProductPages : Page
     {
+        Core db = new Core();
         public ProductPages()
         {
             InitializeComponent();
+            DataListView.ItemsSource=db.context.Product.ToList();
+            
         }
     }
 }
