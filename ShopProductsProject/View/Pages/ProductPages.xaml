@@ -71,12 +71,19 @@
             <ListView x:Name="PaginationListView" BorderThickness="0">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock FontSize="16" Foreground="{Binding TextColor}"
+                        <TextBlock MouseLeftButtonDown="TextBlockMouseLeftButtonDown" FontSize="16" Foreground="{Binding TextColor}"
                                    FontWeight="{Binding Fontweight}"
                                    Text="{Binding Num}"
                                    TextDecorations="{Binding Selected}"/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal">
+
+                        </StackPanel>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
             </ListView>
             <TextBlock x:Name="NextTextBlock" VerticalAlignment="Center" Text="&gt;" Margin="0 0 2 0" FontSize="16"/>
 

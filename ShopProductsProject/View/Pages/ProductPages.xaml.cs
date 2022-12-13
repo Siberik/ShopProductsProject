@@ -21,6 +21,7 @@ namespace ShopProductsProject.View.Pages
     /// </summary>
     public partial class ProductPages : Page
     {
+        int page = 1;
         Core db = new Core();
         //Количество элементов на странице
         int countElement = 10;
@@ -28,7 +29,8 @@ namespace ShopProductsProject.View.Pages
         {
             InitializeComponent();
             DataListView.ItemsSource = GetRows();
-            GetPagesCount()
+            GetPagesCount();
+            DisplayPagination(page);
         }
         /// <summary>
         /// Формирование данные для вывода 
@@ -74,6 +76,14 @@ namespace ShopProductsProject.View.Pages
             PaginationListView.ItemsSource = source;
             PrevTextBlock.Visibility = (page <= 1 ? Visibility.Hidden : Visibility.Visible);
             NextTextBlock.Visibility = (page >= GetPagesCount() ? Visibility.Hidden : Visibility.Visible);
+        }
+        /// <summary>
+        /// Событие, при нажатии на текст
+        /// </summary>
+        private void TextBlockMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            TextBlock textBlock = sender as TextBlock;
+            page = Convert.ToInt32(textBlock.Text);
         }
     }
 }
