@@ -28,9 +28,9 @@ namespace ShopProductsProject.View.Pages
         public ProductPages()
         {
             InitializeComponent();
-            DataListView.ItemsSource = GetRows();
-            GetPagesCount();
-            DisplayPagination(page);
+
+
+
             UpdateUI();
         }
         /// <summary>
@@ -85,6 +85,7 @@ namespace ShopProductsProject.View.Pages
         {
             TextBlock textBlock = sender as TextBlock;
             page = Convert.ToInt32(textBlock.Text);
+            UpdateUI();
         }
 
         private void PrevTextBlockMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -98,8 +99,11 @@ namespace ShopProductsProject.View.Pages
             {
                 page -= 1;
                 PrevTextBlock.Visibility = Visibility.Visible;
+
             }
-            DisplayPagination(page);
+            UpdateUI();
+
+
         }
 
         private void NextTextBlockMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -114,7 +118,9 @@ namespace ShopProductsProject.View.Pages
                 page += 1;
                 NextTextBlock.Visibility = Visibility.Visible;
             }
-            DisplayPagination(page);
+            UpdateUI();
+
+
         }
         private void UpdateUI()
         {
@@ -122,11 +128,8 @@ namespace ShopProductsProject.View.Pages
             {
                 DisplayPagination(page);
                 List<Product> displayProduct = GetRows().Skip((page - 1) * countElement).Take(countElement).ToList();
-                foreach (var item in displayProduct)
-                {
-                    Console.WriteLine(item.ID);
-                }
 
+                DataListView.ItemsSource = displayProduct;
             }
             else
             {
