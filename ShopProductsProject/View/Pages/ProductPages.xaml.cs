@@ -31,6 +31,7 @@ namespace ShopProductsProject.View.Pages
             DataListView.ItemsSource = GetRows();
             GetPagesCount();
             DisplayPagination(page);
+            UpdateUI();
         }
         /// <summary>
         /// Формирование данные для вывода 
@@ -98,9 +99,10 @@ namespace ShopProductsProject.View.Pages
                 page -= 1;
                 PrevTextBlock.Visibility = Visibility.Visible;
             }
+            DisplayPagination(page);
         }
 
-        private void NextTextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void NextTextBlockMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (page >= GetPagesCount())
             {
@@ -110,7 +112,25 @@ namespace ShopProductsProject.View.Pages
             else
             {
                 page += 1;
-                NextTextBlock.Visibility = Visibility.Visible
+                NextTextBlock.Visibility = Visibility.Visible;
+            }
+            DisplayPagination(page);
+        }
+        private void UpdateUI()
+        {
+            if (GetRows().Count > 10)
+            {
+                DisplayPagination(page);
+                List<Product> displayProduct = GetRows().Skip((page - 1) * countElement).Take(countElement).ToList();
+                foreach (var item in displayProduct)
+                {
+                    Console.WriteLine(item.ID);
+                }
+
+            }
+            else
+            {
+                PaginationListView.Visibility = Visibility.Collapsed;
             }
         }
     }
