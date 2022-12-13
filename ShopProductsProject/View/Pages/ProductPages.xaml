@@ -67,7 +67,7 @@
             </ListView>
         </ScrollViewer>
         <StackPanel Orientation="Horizontal" Grid.Row="2">
-            <TextBlock x:Name="PrevTextBlock" VerticalAlignment="Center" Text="&lt;" Margin="0 0 2 0" FontSize="16"/>
+            <TextBlock x:Name="PrevTextBlock" VerticalAlignment="Center" Text="&lt;" Margin="0 0 2 0" FontSize="16" MouseLeftButtonDown="PrevTextBlockMouseLeftButtonDown"/>
             <ListView x:Name="PaginationListView" BorderThickness="0">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -85,7 +85,7 @@
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
             </ListView>
-            <TextBlock x:Name="NextTextBlock" VerticalAlignment="Center" Text="&gt;" Margin="0 0 2 0" FontSize="16"/>
+            <TextBlock x:Name="NextTextBlock" MouseLeftButtonDown="NextTextBlockMouseLeftButtonDown" VerticalAlignment="Center" Text="&gt;" Margin="0 0 2 0" FontSize="16"/>
 
         </StackPanel>
     </Grid>

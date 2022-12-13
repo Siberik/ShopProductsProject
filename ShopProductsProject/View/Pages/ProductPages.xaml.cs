@@ -85,5 +85,33 @@ namespace ShopProductsProject.View.Pages
             TextBlock textBlock = sender as TextBlock;
             page = Convert.ToInt32(textBlock.Text);
         }
+
+        private void PrevTextBlockMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (page <= 1)
+            {
+                page = 1;
+                PrevTextBlock.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                page -= 1;
+                PrevTextBlock.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void NextTextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (page >= GetPagesCount())
+            {
+                page = GetPagesCount();
+                NextTextBlock.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                page += 1;
+                NextTextBlock.Visibility = Visibility.Visible
+            }
+        }
     }
 }
