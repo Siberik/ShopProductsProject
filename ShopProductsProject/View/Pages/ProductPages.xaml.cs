@@ -25,8 +25,19 @@ namespace ShopProductsProject.View.Pages
         public ProductPages()
         {
             InitializeComponent();
-            DataListView.ItemsSource=db.context.Product.ToList();
-            
+            DataListView.ItemsSource = GetRows();
+
+        }
+        /// <summary>
+        /// Формирование данные для вывода 
+        /// </summary>
+        /// <returns>
+        /// Возвращает все данные из таблицы
+        /// </returns>
+        private List<Product> GetRows()
+        {
+            List<Product> arrayProduct = db.context.Product.ToList();
+            return arrayProduct;
         }
     }
 }

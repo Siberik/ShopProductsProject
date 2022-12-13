@@ -11,7 +11,7 @@ namespace ShopProductsProject.Model
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class AgentType
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,11 +19,11 @@ namespace ShopProductsProject.Model
         {
             this.Agent = new HashSet<Agent>();
         }
-    
+
         public int ID { get; set; }
         public string Title { get; set; }
         public string Image { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Agent> Agent { get; set; }
     }

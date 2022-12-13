@@ -65,6 +65,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\Patrial Class\ProductPatrial.cs" />
+    <Compile Include="View\PageItem.cs" />
     <Compile Include="View\Pages\ProductPages.xaml.cs">
       <DependentUpon>ProductPages.xaml</DependentUpon>
     </Compile>

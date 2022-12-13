@@ -56,12 +56,19 @@ namespace ShopProductsProject.Model
 
             }
         }
-        public decimal ReadyCount
+        public double CostProduct
         {
             get
             {
-
+                double costProduct = 0;
+                List<ProductMaterial> arrayActiveProduct = ProductMaterial.Where(x => x.ProductID == ID).ToList();
+                foreach (var item in arrayActiveProduct)
+                {
+                    costProduct += Convert.ToDouble(item.Count) * Convert.ToDouble(item.Material.Cost);
+                }
+                return costProduct;
             }
+
         }
     }
 }
