@@ -50,12 +50,13 @@ namespace ShopProductsProject.View.Pages
             {
                 arrayProduct = arrayProduct.Where(x => x.Title.ToUpper().Contains(SearchTextBox.Text.ToUpper()) || x.MaterialList.ToUpper().Contains(SearchTextBox.Text.ToUpper())).ToList();
             }
-            if (arrayProduct.Count > 0)
+            if (SortComboBox.SelectedItem != null)
             {
 
 
                 if (SortComboBox.SelectedIndex == 1)
                 {
+
                     if (check)
                     {
                         arrayProduct = arrayProduct.OrderByDescending(x => x.Title).ToList();
@@ -200,10 +201,11 @@ namespace ShopProductsProject.View.Pages
 
         private void SortComboBoxSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (SortComboBox.SelectedIndex != 0)
-            {
-                UpdateUI();
-            }
+
+            //if (SortComboBox.SelectedIndex != 0)
+            //{
+            UpdateUI();
+            //}
 
 
         }
