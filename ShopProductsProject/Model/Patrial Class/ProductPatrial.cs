@@ -40,7 +40,7 @@ namespace ShopProductsProject.Model
                 List<ProductMaterial> arrayActiveProduct = db.context.ProductMaterial.Where(x => x.ProductID == ID).ToList();
                 foreach (var item in arrayActiveProduct)
                 {
-                    arrayMaterials.Add(item.Material.Title.ToString());
+                    arrayMaterials.Add($"{item.Material.Title} ({item.Material.MaterialTypeID})");
 
                 }
                 materials += String.Join(",", arrayMaterials);
@@ -70,5 +70,6 @@ namespace ShopProductsProject.Model
             }
 
         }
+
     }
 }

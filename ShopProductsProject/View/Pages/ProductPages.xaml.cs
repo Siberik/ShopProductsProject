@@ -19,69 +19,113 @@ namespace ShopProductsProject.View.Pages
     /// <summary>
     /// Логика взаимодействия для ProductPages.xaml
     /// </summary>
+
     public partial class ProductPages : Page
     {
 
         bool check = true;
         int page = 1;
         Core db = new Core();
+        int materialId;
         //Количество элементов на странице
         int countElement = 10;
         public ProductPages()
         {
             InitializeComponent();
 
+            var arrayMaterial = new List<MaterialType>
+            {
+             new MaterialType
+            {
+            ID = 0,
+            Title = "Все"
+            }
+            };
+            arrayMaterial.AddRange(db.context.MaterialType.ToList());
+            FiltrationComboBox.ItemsSource = arrayMaterial;
+            FiltrationComboBox.DisplayMemberPath = "Title";
+            FiltrationComboBox.SelectedValuePath = "ID";
+
+
 
 
             UpdateUI();
         }
+
+
+
+
+
+
         /// <summary>
         /// Формирование данных для вывода 
         /// </summary>
         /// <returns>
         /// Возвращает все данные из таблицы
         /// </returns>
-        private List<Product> GetRows()
+        private List<ProductMaterial> GetRows()
         {
 
-            List<Product> arrayProduct = db.context.Product.ToList();
+            List<ProductMaterial> arrayProduct = db.context.ProductMaterial.ToList();
 
+            //List<MaterialType> arrayMaterialTypes = db.context.MaterialType.ToList();
             if (SearchTextBox.Text != String.Empty && !String.IsNullOrWhiteSpace(SearchTextBox.Text))
             {
-                arrayProduct = arrayProduct.Where(x => x.Title.ToUpper().Contains(SearchTextBox.Text.ToUpper()) || x.MaterialList.ToUpper().Contains(SearchTextBox.Text.ToUpper())).ToList();
+                arrayProduct = arrayProduct.Where(x => x.Product.Title.ToUpper().Contains(SearchTextBox.Text.ToUpper()) || x.Product.MaterialList.ToUpper().Contains(SearchTextBox.Text.ToUpper())).ToList();
             }
-            if (SortComboBox.SelectedItem != null)
+
+
+
+
+            if (SortComboBox.SelectedIndex == 1)
             {
 
-
-                if (SortComboBox.SelectedIndex == 1)
+                if (check)
                 {
-
-                    if (check)
-                    {
-                        arrayProduct = arrayProduct.OrderByDescending(x => x.Title).ToList();
-                    }
-                    else
-                    {
-                        arrayProduct = arrayProduct.OrderBy(x => x.Title).ToList();
-                    }
-
-
+                    arrayProduct = arrayProduct.OrderByDescending(x => x.Product.Title).ToList();
                 }
-                if (SortComboBox.SelectedIndex == 2)
+                else
                 {
-                    if (check)
-                    {
-                        arrayProduct = arrayProduct.OrderByDescending(x => x.CostProduct).ToList();
-                    }
-                    else
-                    {
-                        arrayProduct = arrayProduct.OrderBy(x => x.CostProduct).ToList();
-                    }
-
+                    arrayProduct = arrayProduct.OrderBy(x => x.Product.Title).ToList();
                 }
+
+
             }
+            if (SortComboBox.SelectedIndex == 2)
+            {
+                if (check)
+                {
+                    arrayProduct = arrayProduct.OrderByDescending(x => x.Product.CostProduct).ToList();
+                }
+                else
+                {
+                    arrayProduct = arrayProduct.OrderBy(x => x.Product.CostProduct).ToList();
+                }
+
+
+            }
+
+            if (materialId != 0)
+            {
+
+                arrayProduct = arrayProduct.Where(x => x.Material.MaterialTypeID == materialId).ToList();
+
+            }
+            else
+            {
+                arrayProduct = arrayProduct.ToList();
+            }
+            //if (FiltrationComboBox.SelectedIndex == 0)
+            //{
+            //    arrayProduct = arrayMaterial.OrderBy(x => x.)
+            //}
+            //if (FiltrationComboBox.SelectedIndex == 1)
+            //{
+            //    arrayProduct = arrayProduct.OrderBy(x => x.MaterialList).ToList();
+            //}
+
             return arrayProduct;
+
 
         }
         /// <summary>
@@ -167,7 +211,7 @@ namespace ShopProductsProject.View.Pages
             if (GetRows().Count > 10)
             {
 
-                List<Product> displayProduct = GetRows().Skip((page - 1) * countElement).Take(countElement).ToList();
+                List<ProductMaterial> displayProduct = GetRows().Skip((page - 1) * countElement).Take(countElement).ToList();
                 DisplayPagination(page);
                 DataListView.ItemsSource = displayProduct;
 
@@ -202,12 +246,20 @@ namespace ShopProductsProject.View.Pages
         private void SortComboBoxSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
-            //if (SortComboBox.SelectedIndex != 0)
-            //{
+
             UpdateUI();
-            //}
 
 
+
+        }
+
+
+
+        private void FiltrationComboBoxSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            materialId = Convert.ToInt32(FiltrationComboBox.SelectedValue);
+
+            UpdateUI();
         }
     }
 }
