@@ -21,6 +21,8 @@ namespace ShopProductsProject.View.Pages
     /// </summary>
     public partial class ProductPages : Page
     {
+
+        bool check = true;
         int page = 1;
         Core db = new Core();
         //Количество элементов на странице
@@ -41,10 +43,42 @@ namespace ShopProductsProject.View.Pages
         /// </returns>
         private List<Product> GetRows()
         {
+
             List<Product> arrayProduct = db.context.Product.ToList();
+
             if (SearchTextBox.Text != String.Empty && !String.IsNullOrWhiteSpace(SearchTextBox.Text))
             {
                 arrayProduct = arrayProduct.Where(x => x.Title.ToUpper().Contains(SearchTextBox.Text.ToUpper()) || x.MaterialList.ToUpper().Contains(SearchTextBox.Text.ToUpper())).ToList();
+            }
+            if (arrayProduct.Count > 0)
+            {
+
+
+                if (SortComboBox.SelectedIndex == 1)
+                {
+                    if (check)
+                    {
+                        arrayProduct = arrayProduct.OrderByDescending(x => x.Title).ToList();
+                    }
+                    else
+                    {
+                        arrayProduct = arrayProduct.OrderBy(x => x.Title).ToList();
+                    }
+
+
+                }
+                if (SortComboBox.SelectedIndex == 2)
+                {
+                    if (check)
+                    {
+                        arrayProduct = arrayProduct.OrderByDescending(x => x.CostProduct).ToList();
+                    }
+                    else
+                    {
+                        arrayProduct = arrayProduct.OrderBy(x => x.CostProduct).ToList();
+                    }
+
+                }
             }
             return arrayProduct;
 
@@ -131,10 +165,11 @@ namespace ShopProductsProject.View.Pages
         {
             if (GetRows().Count > 10)
             {
-                DisplayPagination(page);
-                List<Product> displayProduct = GetRows().Skip((page - 1) * countElement).Take(countElement).ToList();
 
+                List<Product> displayProduct = GetRows().Skip((page - 1) * countElement).Take(countElement).ToList();
+                DisplayPagination(page);
                 DataListView.ItemsSource = displayProduct;
+
             }
             else
             {
@@ -145,6 +180,32 @@ namespace ShopProductsProject.View.Pages
         private void SearchTextBoxTextChanged(object sender, TextChangedEventArgs e)
         {
             UpdateUI();
+        }
+
+
+
+        private void OrderButtonClick(object sender, RoutedEventArgs e)
+        {
+            check = !check;
+            if (check)
+            {
+                OrderButton.Content = "↓";
+            }
+            else
+            {
+                OrderButton.Content = "↑";
+            }
+            UpdateUI();
+        }
+
+        private void SortComboBoxSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (SortComboBox.SelectedIndex != 0)
+            {
+                UpdateUI();
+            }
+
+
         }
     }
 }
