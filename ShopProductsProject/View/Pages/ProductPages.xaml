@@ -57,7 +57,7 @@
                                     <ColumnDefinition Width="10*"/>
                                     <ColumnDefinition Width="1*"/>
                                 </Grid.ColumnDefinitions>
-                                <Image Source="{Binding Product.ImagePath}" Width="200"/>
+                                <Image Source="{Binding ImagePath}" Width="200"/>
                                 <Grid Grid.Column="1">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="auto"/>
@@ -66,10 +66,10 @@
 
                                     </Grid.RowDefinitions>
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding Product.Title}"/>
-                                        <TextBlock Text="{Binding Product.ArticleNumber}"/>
-                                        <TextBlock Text="{Binding Product.CostProduct}"/>
-                                        <TextBlock Text="{Binding Product.MaterialList}"/>
+                                        <TextBlock Text="{Binding Title}"/>
+                                        <TextBlock Text="{Binding ArticleNumber}"/>
+                                        <TextBlock Text="{Binding CostProduct}"/>
+                                        <TextBlock Text="{Binding MaterialList}"/>
                                     </StackPanel>
                                 </Grid>
                             </Grid>

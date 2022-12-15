@@ -63,15 +63,15 @@ namespace ShopProductsProject.View.Pages
         /// <returns>
         /// Возвращает все данные из таблицы
         /// </returns>
-        private List<ProductMaterial> GetRows()
+        private List<Product> GetRows()
         {
 
-            List<ProductMaterial> arrayProduct = db.context.ProductMaterial.ToList();
+            List<Product> arrayProduct = db.context.Product.ToList();
 
             //List<MaterialType> arrayMaterialTypes = db.context.MaterialType.ToList();
             if (SearchTextBox.Text != String.Empty && !String.IsNullOrWhiteSpace(SearchTextBox.Text))
             {
-                arrayProduct = arrayProduct.Where(x => x.Product.Title.ToUpper().Contains(SearchTextBox.Text.ToUpper()) || x.Product.MaterialList.ToUpper().Contains(SearchTextBox.Text.ToUpper())).ToList();
+                arrayProduct = arrayProduct.Where(x => x.Title.ToUpper().Contains(SearchTextBox.Text.ToUpper()) || x.MaterialList.ToUpper().Contains(SearchTextBox.Text.ToUpper())).ToList();
             }
 
 
@@ -82,11 +82,11 @@ namespace ShopProductsProject.View.Pages
 
                 if (check)
                 {
-                    arrayProduct = arrayProduct.OrderByDescending(x => x.Product.Title).ToList();
+                    arrayProduct = arrayProduct.OrderByDescending(x => x.Title).ToList();
                 }
                 else
                 {
-                    arrayProduct = arrayProduct.OrderBy(x => x.Product.Title).ToList();
+                    arrayProduct = arrayProduct.OrderBy(x => x.Title).ToList();
                 }
 
 
@@ -95,11 +95,11 @@ namespace ShopProductsProject.View.Pages
             {
                 if (check)
                 {
-                    arrayProduct = arrayProduct.OrderByDescending(x => x.Product.CostProduct).ToList();
+                    arrayProduct = arrayProduct.OrderByDescending(x => x.CostProduct).ToList();
                 }
                 else
                 {
-                    arrayProduct = arrayProduct.OrderBy(x => x.Product.CostProduct).ToList();
+                    arrayProduct = arrayProduct.OrderBy(x => x.CostProduct).ToList();
                 }
 
 
@@ -107,8 +107,9 @@ namespace ShopProductsProject.View.Pages
 
             if (materialId != 0)
             {
-
-                arrayProduct = arrayProduct.Where(x => x.Material.MaterialTypeID == materialId).ToList();
+                var result = from c in arrayProduct
+                             join p in ProductMaterial on c.ID equals p.ProductId
+                arrayProduct = arrayProduct.Where(x => x.ProductMaterial.Join(Material).Material.MaterialTypeID == materialId).ToList();
 
             }
             else
@@ -211,7 +212,7 @@ namespace ShopProductsProject.View.Pages
             if (GetRows().Count > 10)
             {
 
-                List<ProductMaterial> displayProduct = GetRows().Skip((page - 1) * countElement).Take(countElement).ToList();
+                List<Product> displayProduct = GetRows().Skip((page - 1) * countElement).Take(countElement).ToList();
                 DisplayPagination(page);
                 DataListView.ItemsSource = displayProduct;
 
