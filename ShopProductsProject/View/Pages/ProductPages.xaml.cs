@@ -34,7 +34,7 @@ namespace ShopProductsProject.View.Pages
             UpdateUI();
         }
         /// <summary>
-        /// Формирование данные для вывода 
+        /// Формирование данных для вывода 
         /// </summary>
         /// <returns>
         /// Возвращает все данные из таблицы
@@ -42,7 +42,12 @@ namespace ShopProductsProject.View.Pages
         private List<Product> GetRows()
         {
             List<Product> arrayProduct = db.context.Product.ToList();
+            if (SearchTextBox.Text != String.Empty && !String.IsNullOrWhiteSpace(SearchTextBox.Text))
+            {
+                arrayProduct = arrayProduct.Where(x => x.Title.ToUpper().Contains(SearchTextBox.Text.ToUpper()) || x.MaterialList.ToUpper().Contains(SearchTextBox.Text.ToUpper())).ToList();
+            }
             return arrayProduct;
+
         }
         /// <summary>
         /// Подсчёт количества страниц,в пагинции
@@ -135,6 +140,11 @@ namespace ShopProductsProject.View.Pages
             {
                 PaginationListView.Visibility = Visibility.Collapsed;
             }
+        }
+
+        private void SearchTextBoxTextChanged(object sender, TextChangedEventArgs e)
+        {
+            UpdateUI();
         }
     }
 }
