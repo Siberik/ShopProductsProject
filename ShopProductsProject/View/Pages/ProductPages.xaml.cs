@@ -262,5 +262,23 @@ namespace ShopProductsProject.View.Pages
 
             UpdateUI();
         }
+
+        private void AddProductButtonClick(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new UpdatePage());
+            UpdateUI();
+
+        }
+
+        
+        /// <summary>
+        /// Изменение кнопки "Добавить" на "Редактировать"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DataListViewSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            AddProductButton.Content = "Редактировать товар";
+        }
     }
 }

@@ -11,6 +11,7 @@
                 <ResourceDictionary Source="Assets/Dictionaries/Dictionary.xaml"/>
 
             </ResourceDictionary.MergedDictionaries>
+            
 
         </ResourceDictionary>
     </Application.Resources>

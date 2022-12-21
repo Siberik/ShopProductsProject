@@ -46,7 +46,7 @@
             </ComboBox>
         </Grid>
         <ScrollViewer Grid.Row="1">
-            <ListView x:Name="DataListView">
+            <ListView x:Name="DataListView" SelectionMode="Single" SelectionChanged="DataListViewSelectionChanged">
 
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -98,7 +98,7 @@
                 </ListView.ItemsPanel>
             </ListView>
             <TextBlock x:Name="NextTextBlock" MouseLeftButtonDown="NextTextBlockMouseLeftButtonDown" VerticalAlignment="Center" Text="&gt;" Margin="0 0 2 0" FontSize="16"/>
-
+<Button HorizontalAlignment="Left" x:Name="AddProductButton" Content="Добавить товар" Grid.Row="2" Click="AddProductButtonClick"/>
         </StackPanel>
         
     </Grid>

@@ -26,5 +26,17 @@ namespace ShopProductsProject
             InitializeComponent();
             MainFrame.Navigate(new ProductPages());
         }
+        /// <summary>
+        /// Переход на предыдущую страницу
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BackButtonClick(object sender, RoutedEventArgs e)
+        {
+            if (MainFrame.CanGoBack)
+            {
+                MainFrame.GoBack();
+            }
+        }
     }
 }
