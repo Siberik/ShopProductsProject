@@ -107,9 +107,9 @@ namespace ShopProductsProject.View.Pages
 
             if (materialId != 0)
             {
-                var result = from c in arrayProduct
-                             join p in ProductMaterial on c.ID equals p.ProductId
-                arrayProduct = arrayProduct.Where(x => x.ProductMaterial.Join(Material).Material.MaterialTypeID == materialId).ToList();
+                //var result = from c in arrayProduct
+                //             join p in ProductMaterial on c.ID equals p.ProductId
+                //arrayProduct = arrayProduct.Where(x => (Material).Material.MaterialTypeID == materialId).ToList();
 
             }
             else
