@@ -14,6 +14,6 @@
         </Grid.RowDefinitions>
         <TextBlock Text="{Binding ElementName=MainFrame.Content, Path=Content.Title}"></TextBlock>
         <Button x:Name="BackButton" Content="Назад" Click="BackButtonClick" HorizontalAlignment="Right"/>
-        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Grid.Row="1"/>
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Grid.Row="1" />
     </Grid>
 </Window>

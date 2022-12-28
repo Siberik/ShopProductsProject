@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace ShopProductsProject.Model
 {
@@ -12,20 +14,23 @@ namespace ShopProductsProject.Model
         /// <summary>
         /// Свойство, отвечающее за исправление пути к картинке
         /// </summary>
-        public string ImagePath
+        public byte[] ImagePath
         {
             get
             {
-                if (Image == null)
+                byte[] image = null;
+                if(image==null)
                 {
-                    return "/Assets/Images/picture.png";
+                    image = File.ReadAllBytes($"{Directory.GetCurrentDirectory()}/Assets/Images/picture.png");
                 }
                 else
                 {
-                    return "/Assets/Images" + Image;
+                    image = File.ReadAllBytes($"{Directory.GetCurrentDirectory()}/Assets/Images{Image}");
                 }
+                return new ImageSourceConverter().ConvertFrom(image) as byte[];
 
             }
+
         }
         /// <summary>
         /// Метод, возвращающий список материалов

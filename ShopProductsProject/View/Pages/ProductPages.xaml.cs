@@ -276,7 +276,7 @@ namespace ShopProductsProject.View.Pages
             {
                 Product newObject = new Product();
                 this.NavigationService.Navigate(new UpdatePage(db, newObject));
-
+                
             }
            
             UpdateUI();
