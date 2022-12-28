@@ -15,11 +15,11 @@
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="Тип товара" />
-            <ComboBox DisplayMemberPath="Title" SelectedValuePath="ID" x:Name="TypeComboBox"/>
+            <ComboBox DisplayMemberPath="Title" SelectedValuePath="ID" x:Name="TypeComboBox" Text="{Binding ProductType.Title}"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="Артикул товара" />
-            <TextBox x:Name="ArticleTextBox"/>
+            <TextBox x:Name="ArticleTextBox" Text="{Binding ArticleNumber}"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="Фото товара" />

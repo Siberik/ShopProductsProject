@@ -39,7 +39,7 @@ namespace ShopProductsProject.View.Pages
 
         private void SaveButtonClick(object sender, RoutedEventArgs e)
         {
-
+            db.context.SaveChanges();
         }
     }
 }
