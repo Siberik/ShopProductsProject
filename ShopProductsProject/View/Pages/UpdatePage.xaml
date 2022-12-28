@@ -11,7 +11,7 @@
     <StackPanel>
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="Название товара" />
-            <TextBlock x:Name="TitleTextBlock" Text="{Binding Title}"/>
+            <TextBox x:Name="TitleTextBlock" Text="{Binding Title}" Width="100"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="Тип товара" />
@@ -25,7 +25,8 @@
             <TextBlock Text="Фото товара" />
             <Image Source="{Binding ImagePath}" x:Name="ProductImage"/>
             <Button x:Name="ChangeImageButton" Click="ChangeImageButtonClick" Content="Добавить изображение"/>
+            
         </StackPanel>
-       
+       <Button x:Name="SaveButton" Content="Сохранить" Click="SaveButtonClick" Width="100" HorizontalAlignment="Left"/>
     </StackPanel>
 </Page>

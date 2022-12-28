@@ -262,10 +262,23 @@ namespace ShopProductsProject.View.Pages
 
             UpdateUI();
         }
-
+        
         private void AddProductButtonClick(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new UpdatePage());
+            //редактирование продукта
+            Product activeProduct = DataListView.SelectedItem as Product;
+            if (activeProduct != null)
+            {
+            this.NavigationService.Navigate(new UpdatePage(db,activeProduct));
+            }
+            //добавление продукта
+            else
+            {
+                Product newObject = new Product();
+                this.NavigationService.Navigate(new UpdatePage(db, newObject));
+
+            }
+           
             UpdateUI();
 
         }
@@ -279,6 +292,13 @@ namespace ShopProductsProject.View.Pages
         private void DataListViewSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             AddProductButton.Content = "Редактировать товар";
+        }
+
+        
+
+        private void DeleteProductButtonClick(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

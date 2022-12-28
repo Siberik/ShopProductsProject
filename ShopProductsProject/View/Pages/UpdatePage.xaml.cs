@@ -21,14 +21,23 @@ namespace ShopProductsProject.View.Pages
     /// </summary>
     public partial class UpdatePage : Page
     {
-        Core db = new Core();
-        public UpdatePage()
+        Core db ;
+        public UpdatePage(Core db, Product currentProduct)
         {
             InitializeComponent();
             TypeComboBox.ItemsSource = db.context.ProductType.ToList();
+            this.DataContext= currentProduct;
+            this.db = db;
         }
 
         private void ChangeImageButtonClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+       
+
+        private void SaveButtonClick(object sender, RoutedEventArgs e)
         {
 
         }
