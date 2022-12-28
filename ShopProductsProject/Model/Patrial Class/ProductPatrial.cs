@@ -16,6 +16,8 @@ namespace ShopProductsProject.Model
         /// </summary>
         public byte[] ImagePath
         {
+
+
             get
             {
                 byte[] image = null;
